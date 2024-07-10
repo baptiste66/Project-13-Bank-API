@@ -1,0 +1,258 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation transactions
+  description: Contains the API endpoints for the transactions in this codebase
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Transactions
+      description: View all transactions for the current month, grouped by account.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transactions have been loaded.
+          schema:
+            $ref: '#/definitions/transactionsResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+  /transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Details
+      description: Show transaction details.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Details have been loaded.
+          schema:
+            $ref: '#/definitions/detailsResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+  /transactions/details/category/{categoryId}:
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Update Category
+      description: Update category.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+        - in: path
+          name: categoryId
+          required: true
+          type: string
+          description: ID of the category
+        - in: body
+          name: body
+          description: Category to be updated
+          required: true
+          schema:
+            $ref: '#/definitions/category'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Category is modified.
+          schema:
+            $ref: '#/definitions/categoryResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Delete Category
+      description: Deletes the category.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+        - in: path
+          name: categoryId
+          required: true
+          type: string
+          description: ID of the category
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Deletion successful.
+          schema:
+            $ref: '#/definitions/categoryDeleteResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+  /transactions/details/note/{noteId}:
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Update Note
+      description: Update note.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+        - in: path
+          name: noteId
+          required: true
+          type: string
+          description: ID of the note
+        - in: body
+          name: body
+          description: Note to be updated
+          required: true
+          schema:
+            $ref: '#/definitions/note'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Note has been updated.
+          schema:
+            $ref: '#/definitions/noteResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - transaction
+      summary: Delete Note
+      description: Deletes the note entered by the user.
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach userID
+          required: true
+          type: string
+        - in: path
+          name: noteId
+          required: true
+          type: string
+          description: ID of the note
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Deletion successful.
+          schema:
+            $ref: '#/definitions/noteDeleteResponse'
+        '400':
+          description: Invalid Fields.
+        '500':
+          description: Server Error.
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  category:
+    type: object
+    properties:
+      category:
+        type: string
+        description: User category
+  note:
+    type: object
+    properties:
+      note:
+        type: string
+        description: User note
+  transactionsResponse:
+    type: object
+    properties:
+      date:
+        type: string
+      description:
+        type: string
+      amount:
+        type: integer
+      balance:
+        type: integer
+  detailsResponse:
+    type: object
+    properties:
+      transactionType:
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+  categoryResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      category:
+        type: string
+  categoryDeleteResponse:
+    type: object
+    properties:
+      category:
+        type: object
+  noteResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      note:
+        type: string
+  noteDeleteResponse:
+    type: object
+    properties:
+      note:
+        type: object
