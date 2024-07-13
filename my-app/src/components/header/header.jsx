@@ -1,5 +1,5 @@
 
-import agentBanklogo from '../../assets/argentBankLogo.png'
+import agentBanklogo from '../../img/argentBankLogo.png'
 import { Link } from 'react-router-dom'
 import {LoginSuccess} from '../../redux/reducers/auth'
 import ButtonLogin from '../button-signIn/signin'

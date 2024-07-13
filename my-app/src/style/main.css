@@ -40,7 +40,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
 }
 
 .main-nav a {
@@ -54,8 +53,9 @@ body {
 
 .main-nav-item {
   text-decoration: none;
-  margin-right: 15px;
-  
+  margin-right: 5px;
+  width: 75px;
+  font-size: small;
 }
 
 .main-nav-item:hover {
@@ -73,7 +73,7 @@ body {
 }
 
 .hero {
-  background-image: url('../assets/bank-tree.jpeg');
+  background-image: url('../img/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -290,6 +290,22 @@ body {
 
   .transaction-button {
     width: 200px;
+  }
+  .main-nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  .main-nav-item {
+    text-decoration: none;
+    margin-right: 15px;
+    width: 90px;
+    font-size: medium;
+  }
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
   }
 }
 .editusername_button{
