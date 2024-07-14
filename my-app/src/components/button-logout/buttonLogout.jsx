@@ -15,7 +15,7 @@ export default function ButtonLoggedOut(){
     }
     return(
         <nav className="main-nav">
-      <Link to="/user" className="main-nav-item">
+      <Link to="/user" className="main-nav-item name">
                 <i className="fa fa-user-circle"></i>
                 {firstName}
             </Link>
